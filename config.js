@@ -3,7 +3,7 @@ window.VOXMIRA = {
   // Store-ID aus dem Partner Center (beginnt mit 9, 12 Zeichen) – dann zeigt der Knopf auf den Store
   storeId: '',
   // Support-E-Mail (zuerst Gmail, später eigene Adresse)
-  supportEmail: '',
+  supportEmail: 'support.voxmira.app@gmail.com',
 };
 
 // ---- ab hier nichts ändern ----
