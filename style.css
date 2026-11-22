@@ -113,7 +113,7 @@ section p.sub { text-align: center; color: var(--muted); max-width: 620px; margi
 .ftext { max-width: 680px; margin: 0 auto 26px; text-align: center; }
 .feature h3 { font-size: clamp(24px, 3.2vw, 34px); line-height: 1.15; letter-spacing: -.5px; margin: 0 0 10px; }
 .feature p { color: var(--muted); margin: 0; }
-.fimg { max-width: 1100px; margin: 0 auto; }
+.fimg { max-width: 860px; margin: 0 auto; }
 .fimg img { width: 100%; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 24px 60px rgba(0, 0, 0, .5); }
 
 /* Fragen */
