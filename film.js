@@ -20,6 +20,7 @@
       say4: 'Ziemlich voll. Vormittags zwei Meetings, danach habe ich die Präsentation fertig gemacht. Jetzt freue ich mich richtig auf heute Abend.',
       s4: ['Zweimal kurz tippen = Freihand.', 'Sprich, so lange du willst.', 'Einmal tippen beendet.'],
       s5: ['Sag einfach, was du brauchst.', 'Vertippt? Strg + Rücktaste entfernt das letzte Diktat.', 'Alles bleibt auf deinem PC. 100 % offline.'],
+      punch: 'Taste halten. <span class="grad">Sprechen.</span> Loslassen.',
       cards: ['„neue Zeile“', '„Fragezeichen“', '„lösch den letzten Satz“'], undo: 'Strg + ⌫ = letztes Diktat weg',
       sum: ['Rechte Strg-Taste halten, sprechen, loslassen – der Text steht da. In jedem Programm.',
             'Strg halten + Shift drücken: Du sprichst Deutsch, Voxmira schreibt Englisch.',
@@ -45,6 +46,7 @@
       say4: 'Pretty busy. Two meetings in the morning, then I finished the presentation. Now I’m really looking forward to tonight.',
       s4: ['Tap twice = hands-free.', 'Talk as long as you like.', 'One tap to finish.'],
       s5: ['Just say what you need.', 'Mistake? Ctrl + Backspace removes the last dictation.', 'Everything stays on your PC. 100% offline.'],
+      punch: 'Hold. <span class="grad">Speak.</span> Release.',
       cards: ['“new line”', '“question mark”', '“delete the last sentence”'], undo: 'Ctrl + ⌫ = last dictation gone',
       sum: ['Hold the right Ctrl key, talk, release – your text appears. In any app.',
             'Hold Ctrl + press Shift: you speak German, Voxmira writes English.',
@@ -134,6 +136,7 @@
   function reset() {
     allKeysUp(); hideBubble(); hands.classList.remove('show');
     over.className = 'fover'; over.innerHTML = '';
+    $('fLogo').classList.remove('show');
     endBox.classList.remove('show', 'next');
     msgs.innerHTML = '';
     setInput(''); setBar('idle', L.idle); sub('', '');
@@ -198,7 +201,9 @@
       const u = document.createElement('span'); u.className = 'chip key'; u.textContent = L.undo; over.appendChild(u);
       sub(L.s5[1]); key('ctrl', true); key('back', true);
       await at(5000); allKeysUp();
-      await at(7300); over.className = 'fover logo'; over.innerHTML = '<img src="logo.svg" alt=""><b>Voxmira</b>'; sub(L.s5[2]);
+      await at(6600); over.classList.add('out');           // Befehls-Kärtchen ausblenden
+      await at(7200); over.className = 'fover'; over.innerHTML = '';
+      $('fPunch').innerHTML = L.punch; $('fLogo').classList.add('show'); sub(L.s5[2]);
     },
   ];
 

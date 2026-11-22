@@ -109,8 +109,6 @@ html[data-lang="de"] .langs [data-l="de"], html[data-lang="en"] .langs [data-l="
 
 .fover { position: absolute; inset: 0; display: none; pointer-events: none; }
 .fover.cards { display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: 10px; padding: 60px 20px 70px; background: rgba(247, 247, 250, .72); backdrop-filter: blur(2px); }
-.fover.logo { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: #0f0f16; color: #fff; font-size: 26px; animation: fadeIn .5s ease; }
-.fover.logo img { width: 84px; height: 84px; filter: drop-shadow(0 14px 30px rgba(139, 92, 246, .6)); animation: logoIn .7s cubic-bezier(.2, 1.4, .4, 1); }
 .chip { padding: 8px 15px; border-radius: 999px; background: #fff; border: 1px solid #e0e0ea; box-shadow: 0 6px 18px rgba(30, 30, 60, .12); font-size: 15px; font-weight: 600; color: #2c2c3a; animation: msgIn .35s ease; }
 .chip.key { color: #fff; border: 0; background: #1e1e28; }
 @keyframes fadeIn { from { opacity: 0; } }
@@ -231,3 +229,16 @@ footer a:hover { color: var(--text); }
 @keyframes typing { 50% { transform: translateY(-4px); opacity: .5; } }
 .cin .sendb { transition: transform .15s, box-shadow .15s; }
 .cin .sendb.on { transform: translateY(-50%) scale(.85); box-shadow: 0 0 0 6px rgba(99, 102, 241, .25); }
+
+/* Vorführung: Schluss – Bühne bleibt sichtbar, wird weichgezeichnet, Logo + Spruch blenden ein */
+.fover.cards { transition: opacity .5s ease; }
+.fover.out { opacity: 0; }
+.flogo { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 20px; text-align: center; pointer-events: none; opacity: 0; background: rgba(13, 13, 18, 0); -webkit-backdrop-filter: blur(0); backdrop-filter: blur(0); transition: opacity .6s ease, background .9s ease, backdrop-filter .9s ease, -webkit-backdrop-filter .9s ease; }
+.flogo.show { opacity: 1; background: rgba(13, 13, 18, .74); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
+.flogo img, .flogo b, .flogo p { opacity: 0; transform: translateY(10px); transition: opacity .7s ease, transform .7s ease; }
+.flogo img { width: 72px; height: 72px; margin-bottom: 8px; }
+.flogo b { font-size: 30px; font-weight: 700; letter-spacing: -.5px; color: #fff; }
+.flogo p { margin: 4px 0 0; font-size: clamp(20px, 3.4vw, 30px); font-weight: 700; letter-spacing: -.6px; line-height: 1.2; color: #fff; }
+.flogo.show img { opacity: 1; transform: none; transition-delay: .45s; }
+.flogo.show b { opacity: 1; transform: none; transition-delay: .7s; }
+.flogo.show p { opacity: 1; transform: none; transition-delay: 1.3s; }
