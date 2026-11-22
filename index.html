@@ -241,11 +241,6 @@
     }
   }
   document.addEventListener('DOMContentLoaded', run);
-  // App-Ansichten antippen = in voller Größe öffnen (vor allem am Handy hilfreich)
-  document.addEventListener('DOMContentLoaded', () => document.querySelectorAll('.fimg img').forEach(i => {
-    i.style.cursor = 'zoom-in';
-    i.addEventListener('click', () => window.open(i.src, '_blank', 'noopener'));
-  }));
 })();
 </script>
 </body>
