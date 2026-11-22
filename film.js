@@ -179,9 +179,8 @@
       if (my !== gen) return;
       if (reduce) { sub(L.sum[scene]); paused = true; drawPlay(); elapsed = DUR[scene]; drawProgress(); showNext(scene); return; }
     }
-    finish();
+    play(0); // läuft endlos weiter, ohne „Nochmal ansehen“
   }
-  function finish() { paused = true; scene = S.length - 1; elapsed = DUR[scene]; drawProgress(); drawPlay(); endBox.classList.add('show'); }
   function showNext(i) {
     if (i >= S.length - 1) { endBox.classList.add('show'); return; }
     endBox.classList.add('show', 'next');
