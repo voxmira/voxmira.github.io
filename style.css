@@ -108,8 +108,16 @@ section p.sub { text-align: center; color: var(--muted); max-width: 620px; margi
 .steps { counter-reset: s; }
 .steps .card h3::before { counter-increment: s; content: counter(s); display: inline-grid; place-items: center; width: 30px; height: 30px; margin-right: 10px; border-radius: 50%; background: linear-gradient(135deg, var(--v1), var(--v2)); font-size: 15px; vertical-align: 2px; }
 
-.shots { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-.shots img { border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0, 0, 0, .4); }
+/* Funktionen mit großen App-Ansichten: Text + Bild nebeneinander (am Handy untereinander) */
+.feature { display: grid; gap: 28px; align-items: center; margin-top: 56px; }
+.feature h3 { font-size: clamp(24px, 3.2vw, 32px); line-height: 1.15; letter-spacing: -.5px; margin: 0 0 12px; }
+.feature p { color: var(--muted); margin: 0; }
+.fimg img { width: 100%; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 24px 60px rgba(0, 0, 0, .5); }
+@media (min-width: 860px) {
+  .feature { grid-template-columns: 1fr 2.1fr; gap: 48px; }
+  .feature.flip { grid-template-columns: 2.1fr 1fr; }
+  .feature.flip .ftext { order: 2; }
+}
 
 /* Fragen */
 .faq { max-width: 760px; margin: 0 auto; }

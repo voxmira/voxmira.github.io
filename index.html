@@ -102,11 +102,41 @@
       <h2 lang="de">Durchdacht bis ins Detail</h2><h2 lang="en">Thought through in every detail</h2>
       <p class="sub" lang="de">Freihand-Modus für lange Texte, direkt ins Englische übersetzen, eigene Wörter, Verlauf und ein Assistent, der alles in einer Minute einrichtet.</p>
       <p class="sub" lang="en">Hands-free mode for long texts, translate straight into English, custom words, history and a wizard that sets everything up in a minute.</p>
-      <div class="shots">
-        <img lang="de" src="img/screenshot-2-einrichtung-de.png" alt="Einrichtungs-Assistent" loading="lazy">
-        <img lang="de" src="img/screenshot-3-offline-de.png" alt="Erkennung und PC-Prüfung" loading="lazy">
-        <img lang="en" src="img/screenshot-2-einrichtung-en.png" alt="Setup wizard" loading="lazy">
-        <img lang="en" src="img/screenshot-3-offline-en.png" alt="Recognition and PC check" loading="lazy">
+      <div class="feature">
+        <div class="ftext">
+          <h3 lang="de">In einer Minute <span class="grad">eingerichtet.</span></h3>
+          <h3 lang="en">Set up in <span class="grad">one minute.</span></h3>
+          <p lang="de">Ein Assistent führt dich durch Sprache, Mikrofon und das passende Modell für deinen PC – mit einer kleinen Vorführung, wie Voxmira funktioniert.</p>
+          <p lang="en">A short wizard guides you through language, microphone and the right model for your PC – with a little demo of how Voxmira works.</p>
+        </div>
+        <div class="fimg">
+          <img lang="de" src="img/app-wizard-de.png" alt="Einrichtungs-Assistent" loading="lazy">
+          <img lang="en" src="img/app-wizard-en.png" alt="Setup wizard" loading="lazy">
+        </div>
+      </div>
+      <div class="feature flip">
+        <div class="ftext">
+          <h3 lang="de">100 % offline. <span class="grad">100 % privat.</span></h3>
+          <h3 lang="en">100% offline. <span class="grad">100% private.</span></h3>
+          <p lang="de">Voxmira prüft deinen PC und empfiehlt die beste Stufe. Die Erkennung läuft auf deiner Grafikkarte – kein Konto, keine Cloud.</p>
+          <p lang="en">Voxmira checks your PC and recommends the best level. Recognition runs on your graphics card – no account, no cloud.</p>
+        </div>
+        <div class="fimg">
+          <img lang="de" src="img/app-erkennung-de.png" alt="Erkennung und PC-Prüfung" loading="lazy">
+          <img lang="en" src="img/app-erkennung-en.png" alt="Recognition and PC check" loading="lazy">
+        </div>
+      </div>
+      <div class="feature">
+        <div class="ftext">
+          <h3 lang="de">Sieh, wie viel Zeit du <span class="grad">sparst.</span></h3>
+          <h3 lang="en">See how much time you <span class="grad">save.</span></h3>
+          <p lang="de">Die Statistik zeigt dir, wie viele Minuten Tipparbeit Voxmira dir abgenommen hat. Gespeichert werden nur Zahlen, nie deine Texte.</p>
+          <p lang="en">The statistics show how many minutes of typing Voxmira has saved you. Only numbers are stored, never your texts.</p>
+        </div>
+        <div class="fimg">
+          <img lang="de" src="img/app-statistik-de.png" alt="Statistik" loading="lazy">
+          <img lang="en" src="img/app-statistik-en.png" alt="Statistics" loading="lazy">
+        </div>
       </div>
     </div>
   </section>
@@ -204,6 +234,11 @@
     }
   }
   document.addEventListener('DOMContentLoaded', run);
+  // App-Ansichten antippen = in voller Größe öffnen (vor allem am Handy hilfreich)
+  document.addEventListener('DOMContentLoaded', () => document.querySelectorAll('.fimg img').forEach(i => {
+    i.style.cursor = 'zoom-in';
+    i.addEventListener('click', () => window.open(i.src, '_blank', 'noopener'));
+  }));
 })();
 </script>
 </body>
