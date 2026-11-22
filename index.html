@@ -16,7 +16,7 @@
 <meta property="og:image:height" content="1080">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 <script src="config.js?v=5"></script>
 </head>
 <body>
@@ -45,13 +45,30 @@
     <p class="note" lang="de">7 Tage kostenlos testen · für Windows 10 und 11</p>
     <p class="note" lang="en">Free 7-day trial · for Windows 10 and 11</p>
 
-    <!-- Kleine Vorführung: Text wird diktiert und eingefügt -->
-    <div class="demo" aria-hidden="true">
-      <div class="win">
-        <div class="bar"><i></i><i></i><i></i>&nbsp;<span lang="de">Neue Nachricht</span><span lang="en">New message</span></div>
-        <div class="body"><span id="demoText"></span><span class="caret"></span></div>
+    <!-- Vorführung „So funktioniert Voxmira“ (film.js, Skript: EINFUEHRUNGSVIDEO.md) -->
+    <div class="film" id="film" aria-label="Vorführung / Demo">
+      <div class="stage">
+        <div class="vbar idle" id="fBar"><div class="dot"></div><b id="fStatus"></b><span id="fLive"></span><div class="lvl"><i id="fLvl"></i></div></div>
+        <div class="chat">
+          <div class="chead"><div class="av">M</div><div><b>Mira</b><small id="fOnline">online</small></div></div>
+          <div class="cmsgs" id="fMsgs"></div>
+          <div class="cin"><span class="ph" id="fPh"></span><span class="itext empty" id="fInput"></span><span class="caret"></span><span class="sendb">➤</span></div>
+          <div class="fover" id="fOver"></div>
+        </div>
+        <div class="under">
+          <div class="bubble" id="fBubble"><span class="waves"><i></i><i></i><i></i><i></i></span><span id="fSaid"></span></div>
+          <div class="keys" id="fKeys">
+            <span class="hands" id="fHands"></span>
+            <kbd data-k="shift">⇧ Shift</kbd><kbd data-k="back">⌫</kbd><kbd data-k="enter">Enter ↵</kbd><kbd data-k="ctrl" class="main" id="fCtrl">Strg</kbd>
+          </div>
+        </div>
+        <div class="fend" id="fEnd"><button class="btn" id="fReplay"></button><button class="btn ghost" id="fNext"></button></div>
       </div>
-      <div class="vbar idle" id="demoBar"><div class="dot"></div><b id="demoStatus"></b><span id="demoLive"></span><div class="lvl"><i id="demoLvl"></i></div></div>
+      <div class="subs"><p id="fSub"></p><small id="fHint"></small></div>
+      <div class="fctrl">
+        <button class="play paused" id="fPlay" aria-label="Abspielen"></button>
+        <div class="segs" id="fSegs"><button aria-label="1"><i></i></button><button aria-label="2"><i></i></button><button aria-label="3"><i></i></button><button aria-label="4"><i></i></button><button aria-label="5"><i></i></button></div>
+      </div>
     </div>
   </div>
 
@@ -199,49 +216,6 @@
   </div>
 </footer>
 
-<script>
-// Vorführung: Leiste hört zu, Text erscheint live, beim „Loslassen“ landet er im Fenster
-(function () {
-  const S = {
-    de: { idle: 'Bereit', rec: 'Ich höre zu …', lines: ['Hallo Anna, danke für deine Nachricht.', 'Ich schicke dir die Unterlagen heute Nachmittag.', 'Hast du am Freitag Zeit für einen Kaffee?'] },
-    en: { idle: 'Ready', rec: 'Listening …', lines: ['Hi Anna, thanks for your message.', 'I’ll send you the documents this afternoon.', 'Do you have time for a coffee on Friday?'] },
-  };
-  const text = document.getElementById('demoText'), bar = document.getElementById('demoBar'),
-        status = document.getElementById('demoStatus'), live = document.getElementById('demoLive'), lvl = document.getElementById('demoLvl');
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const wait = ms => new Promise(r => setTimeout(r, ms));
-  let lastLang = null;
-
-  async function run() {
-    for (;;) {
-      const L = S[document.documentElement.dataset.lang] || S.de;
-      lastLang = document.documentElement.dataset.lang;
-      text.textContent = '';
-      if (reduce) { text.textContent = L.lines.join(' '); status.textContent = L.idle; live.textContent = ''; return; }
-      for (const line of L.lines) {
-        bar.classList.add('idle'); status.textContent = L.idle; live.textContent = ''; lvl.style.width = '0';
-        await wait(900);
-        bar.classList.remove('idle'); status.textContent = L.rec;
-        const words = line.split(' ');
-        for (let i = 1; i <= words.length; i++) {
-          live.textContent = words.slice(0, i).join(' ');
-          lvl.style.width = (35 + Math.random() * 60) + '%';
-          await wait(230);
-          if (document.documentElement.dataset.lang !== lastLang) break;
-        }
-        if (document.documentElement.dataset.lang !== lastLang) break;
-        lvl.style.width = '0';
-        await wait(250);
-        text.textContent += (text.textContent ? ' ' : '') + line;
-        bar.classList.add('idle'); status.textContent = L.idle; live.textContent = '';
-        await wait(700);
-      }
-      if (document.documentElement.dataset.lang !== lastLang) continue; // Sprache gewechselt: sofort neu starten
-      await wait(2200);
-    }
-  }
-  document.addEventListener('DOMContentLoaded', run);
-})();
-</script>
+<script src="film.js?v=6"></script>
 </body>
 </html>
