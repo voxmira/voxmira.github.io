@@ -14,7 +14,7 @@ window.VOXMIRA = {
   // Sprache: gespeicherte Wahl, sonst Browser-Sprache
   let lang = 'de';
   try { lang = localStorage.getItem('voxmira-lang') || ''; } catch (e) { lang = ''; }
-  if (lang !== 'de' && lang !== 'en') lang = (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en';
+  if (lang !== 'de' && lang !== 'en') lang = 'en';   // Englisch zuerst (Nutzer, 26.11.2026), Deutsch nur per Knopf
   root.dataset.lang = lang;
   root.lang = lang;
 
